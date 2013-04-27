@@ -7,23 +7,17 @@
 - if @list.todos.empty?
   %p This list doesn't have any todos. Why don't you add one below?
 - else
-  %ul
+  %ul.todos
     - @list.todos.each do |todo|
       - unless todo.new_record?
         %li
+          = form_for [@list, todo], html: {class: 'completed-form'} do |f|
+            = f.check_box :completed, title: "Completed"
+
           - if todo.completed?
             %span.done= todo.name
           - else
             = todo.name
-          &ndash;
-          - if todo.completed?
-            = link_to "not done",
-              list_todo_path(@list, todo, todo: {completed: false}),
-              :method => :patch
-          - else
-            = link_to "finished",
-              list_todo_path(@list, todo, todo: {completed: true}),
-              :method => :patch
           &ndash;
           = link_to "delete",
             list_todo_path(@list, todo),
