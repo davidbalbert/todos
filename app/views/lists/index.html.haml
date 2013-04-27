@@ -1,0 +1,14 @@
+- title "My todo lists"
+
+- if @lists.empty?
+  %p You don't have any lists. Why don't you create one below?
+- else
+  %ul
+    - @lists.each do |list|
+      %li= link_to list.name, list
+
+%h2 Make a new list
+= form_for @list do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.submit

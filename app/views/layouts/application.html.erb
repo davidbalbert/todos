@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield :title %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <% if flash[:success] %>
+    <div id="success"><%= flash[:success] %></div>
+  <% end %>
+
+  <% if flash[:error] %>
+    <div id="error"><%= flash[:error] %></div>
+  <% end %>
+
+  <h1><%= yield :title %></h1>
+  <%= yield %>
+
+</body>
+</html>
