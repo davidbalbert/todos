@@ -8,7 +8,10 @@
       %li
         = link_to list.name, list
         &ndash;
-        = link_to "delete", list, :method => :delete, :confirm => "Are you sure?"
+        = link_to "delete",
+          list,
+          :method => :delete,
+          :data => {:confirm => "Are you sure?"}
 
 %h2 Make a new list
 = form_for @list do |f|

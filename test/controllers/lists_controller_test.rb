@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class ListsControllerTest < ActionController::TestCase
-  test "should get index" do
+  test "get index" do
     get :index
+    assert_response :success
+  end
+
+  test "get show" do
+    get :show, id: lists(:a_list).id
     assert_response :success
   end
 
@@ -12,7 +17,7 @@ class ListsControllerTest < ActionController::TestCase
     end
   end
 
-  test "shouldn't create a list" do
+  test "can't create a list without a name" do
     assert_no_difference("List.count") do
       post :create, list: {name: ""}
     end

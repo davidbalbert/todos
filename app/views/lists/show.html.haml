@@ -1,5 +1,7 @@
 - title @list.name
 
+= link_to "View all lists", root_url
+
 %h2 Completed #{@list.completed_count} out of #{@list.todos.count} todos
 
 - if @list.todos.empty?
@@ -8,7 +10,24 @@
   %ul
     - @list.todos.each do |todo|
       - unless todo.new_record?
-        %li= todo.name
+        %li
+          - if todo.completed?
+            %span.done= todo.name
+          - else
+            = todo.name
+          &ndash;
+          - if todo.completed?
+            = link_to "not done",
+              list_todo_path(@list, todo, todo: {completed: false}),
+              :method => :patch
+          - else
+            = link_to "finished",
+              list_todo_path(@list, todo, todo: {completed: true}),
+              :method => :patch
+          &ndash;
+          = link_to "delete",
+            list_todo_path(@list, todo),
+            :method => :delete
 
 %h2 Add a new todo
 = form_for [@list, @todo] do |f|
