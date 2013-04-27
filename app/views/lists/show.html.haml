@@ -1,0 +1,12 @@
+- title @list.name
+
+%h2 Completed #{@list.completed_todo_count} out of #{@list.todos.size} todos
+
+- if @list.todos.empty?
+  %p This list doesn't have any todos. Why don't you add one below?
+- else
+  %ul
+    - @list.todos.each do |todo|
+      %li= todo.name
+
+%h2 Add a new todo
