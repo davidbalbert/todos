@@ -6,7 +6,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @todo = Todo.new
+    @todo = @list.todos.build
   end
 
   def create
@@ -17,7 +17,7 @@ class ListsController < ApplicationController
       redirect_to root_url
     else
       @lists = List.all
-      flash[:error] = "I couldn't make your list :("
+      flash.now[:error] = "I couldn't make your list :("
       render :index
     end
   end

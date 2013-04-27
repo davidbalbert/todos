@@ -1,12 +1,21 @@
 - title @list.name
 
-%h2 Completed #{@list.completed_todo_count} out of #{@list.todos.size} todos
+%h2 Completed #{@list.completed_count} out of #{@list.todos.count} todos
 
 - if @list.todos.empty?
   %p This list doesn't have any todos. Why don't you add one below?
 - else
   %ul
     - @list.todos.each do |todo|
-      %li= todo.name
+      - unless todo.new_record?
+        %li= todo.name
 
 %h2 Add a new todo
+= form_for [@list, @todo] do |f|
+  - if @todo.errors[:name].any?
+    %ul.error-list
+      - @todo.errors[:name].each do |error|
+        %li Name #{error}.
+  = f.label :name
+  = f.text_field :name
+  = f.submit

@@ -3,7 +3,7 @@ class List < ActiveRecord::Base
 
   has_many :todos
 
-  def completed_todo_count
+  def completed_count
     todos.where(completed: true).size
   end
 end
