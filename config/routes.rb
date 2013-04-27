@@ -1,4 +1,4 @@
-Todo::Application.routes.draw do
+Todos::Application.routes.draw do
   root to: 'lists#index'
 
   resources :lists
