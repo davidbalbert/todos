@@ -1,7 +1,7 @@
 $("li#list-<%= @list.id %>").remove();
 
-if ($("ul#lists").children().length == 0) {
+<% if @lists.count == 0 %>
     $("#lists-container").
         replaceWith("<%=j render partial: 'lists_container',
                     locals: {lists: @lists}%>");
-}
+<% end %>

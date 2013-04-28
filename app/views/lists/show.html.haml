@@ -4,14 +4,7 @@
 
 = render partial: 'header', locals: {list: @list}
 
-- if @list.todos.empty?
-  %p This list doesn't have any todos. Why don't you add one below?
-- else
-  %ul#todos
-    = render partial: 'todos/todo',
-      collection: @list.todos.reject(&:new_record?),
-      locals: {list: @list},
-      :as => :todo
+= render partial: 'todos/todos_container', locals: {list: @list}
 
 %h2 Add a new todo
 = render partial: 'todos/form',
