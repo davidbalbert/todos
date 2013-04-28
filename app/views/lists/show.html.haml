@@ -2,7 +2,7 @@
 
 = link_to "View all lists", root_url
 
-= render partial: 'header', locals: {list: @list}
+= render partial: 'lists/header', locals: {list: @list}
 
 = render partial: 'todos/todos_container', locals: {list: @list}
 
