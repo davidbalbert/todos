@@ -19,7 +19,10 @@ class ListsController < ApplicationController
           redirect_to root_url
         end
 
-        format.js { @new_list = List.new }
+        format.js do
+          @new_list = List.new
+          @lists = List.all
+        end
       end
     else
       respond_to do |format|
@@ -29,7 +32,10 @@ class ListsController < ApplicationController
           render :index
         end
 
-        format.js { @new_list = @list }
+        format.js do
+          @new_list = @list
+          @lists = List.all
+        end
       end
     end
   end
@@ -40,7 +46,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.js
+      format.js { @lists = List.all }
     end
   end
 

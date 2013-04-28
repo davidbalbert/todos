@@ -1,0 +1,6 @@
+#lists-container
+  - if lists.empty?
+    %p You don't have any lists. Why don't you create one below?
+  - else
+    %ul#lists
+      = render partial: 'list', collection: lists, :as => :list

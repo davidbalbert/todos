@@ -1,10 +1,6 @@
 - title "My todo lists"
 
-- if @lists.empty?
-  %p You don't have any lists. Why don't you create one below?
-- else
-  %ul#lists
-    = render partial: 'list', collection: @lists, :as => :list
+= render partial: 'lists', locals: {lists: @lists}
 
 %h2 Make a new list
 = render partial: 'form', locals: {list: @list}
