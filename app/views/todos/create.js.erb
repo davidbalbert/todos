@@ -1,0 +1,12 @@
+<% if @todo.valid? %>
+    $("#todos").append("<%=j render partial: 'todo',
+        locals: {todo: @todo, list: @list}%>");
+
+    $("#list-header").
+        replaceWith("<%=j render partial: 'lists/header',
+        locals: {list: @list}%>");
+
+<% end %>
+
+$("form#new_todo").replaceWith("<%=j render partial: 'form',
+    locals: {list: @list, todo: @new_todo}%>");

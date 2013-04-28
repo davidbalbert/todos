@@ -1,0 +1,15 @@
+%li{id: "todo-#{todo.id}"}
+  = form_for [list, todo],
+    remote: true,
+    html: {class: 'completed-form'} do |f|
+    = f.check_box :completed, title: "Completed"
+
+  - if todo.completed?
+    %span.done= todo.name
+  - else
+    = todo.name
+  &ndash;
+  = link_to "delete",
+    list_todo_path(@list, todo),
+    remote: true,
+    :method => :delete

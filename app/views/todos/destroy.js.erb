@@ -1,0 +1,5 @@
+$("#todo-<%= @todo.id %>").remove();
+
+$("#list-header").
+    replaceWith("<%=j render partial: 'lists/header',
+    locals: {list: @list}%>");

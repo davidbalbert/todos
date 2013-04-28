@@ -2,33 +2,17 @@
 
 = link_to "View all lists", root_url
 
-%h2 Completed #{@list.completed_count} out of #{@list.todos.count} todos
+= render partial: 'header', locals: {list: @list}
 
 - if @list.todos.empty?
   %p This list doesn't have any todos. Why don't you add one below?
 - else
-  %ul.todos
-    - @list.todos.each do |todo|
-      - unless todo.new_record?
-        %li
-          = form_for [@list, todo], html: {class: 'completed-form'} do |f|
-            = f.check_box :completed, title: "Completed"
-
-          - if todo.completed?
-            %span.done= todo.name
-          - else
-            = todo.name
-          &ndash;
-          = link_to "delete",
-            list_todo_path(@list, todo),
-            :method => :delete
+  %ul#todos
+    = render partial: 'todos/todo',
+      collection: @list.todos.reject(&:new_record?),
+      locals: {list: @list},
+      :as => :todo
 
 %h2 Add a new todo
-= form_for [@list, @todo] do |f|
-  - if @todo.errors[:name].any?
-    %ul.error-list
-      - @todo.errors[:name].each do |error|
-        %li Name #{error}.
-  = f.label :name
-  = f.text_field :name
-  = f.submit
+= render partial: 'todos/form',
+         locals: {list: @list, todo: @todo}
