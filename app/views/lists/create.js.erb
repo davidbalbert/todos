@@ -1,0 +1,5 @@
+<% if @list.valid? %>
+    $("ul#lists").append("<%=j render partial: 'list', locals: {list: @list}%>");
+<% end %>
+
+$("form").replaceWith("<%=j render partial: 'form', locals: {list: @new_list}%>");

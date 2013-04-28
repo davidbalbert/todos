@@ -1,0 +1,8 @@
+%li{id: "list-#{list.id}"}
+  = link_to list.name, list
+  &ndash;
+  = link_to "delete",
+    list,
+    :method => :delete,
+    :remote => :true,
+    :data => {:confirm => "Are you sure?"}

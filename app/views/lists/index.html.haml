@@ -3,22 +3,8 @@
 - if @lists.empty?
   %p You don't have any lists. Why don't you create one below?
 - else
-  %ul
-    - @lists.each do |list|
-      %li
-        = link_to list.name, list
-        &ndash;
-        = link_to "delete",
-          list,
-          :method => :delete,
-          :data => {:confirm => "Are you sure?"}
+  %ul#lists
+    = render partial: 'list', collection: @lists, :as => :list
 
 %h2 Make a new list
-= form_for @list do |f|
-  - if @list.errors[:name].any?
-    %ul.error-list
-      - @list.errors[:name].each do |error|
-        %li Name #{error}.
-  = f.label :name
-  = f.text_field :name
-  = f.submit
+= render partial: 'form', locals: {list: @list}

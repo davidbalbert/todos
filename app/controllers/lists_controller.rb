@@ -13,20 +13,35 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      flash[:success] = "New list created!"
-      redirect_to root_url
+      respond_to do |format|
+        format.html do
+          flash[:success] = "New list created!"
+          redirect_to root_url
+        end
+
+        format.js { @new_list = List.new }
+      end
     else
-      @lists = List.all
-      flash.now[:error] = "I couldn't make your list :("
-      render :index
+      respond_to do |format|
+        format.html do
+          @lists = List.all
+          flash.now[:error] = "I couldn't make your list :("
+          render :index
+        end
+
+        format.js { @new_list = @list }
+      end
     end
   end
 
   def destroy
-    list = List.find(params[:id])
-    list.destroy
+    @list = List.find(params[:id])
+    @list.destroy
 
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 
   private
