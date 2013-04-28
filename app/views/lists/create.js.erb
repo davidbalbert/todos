@@ -1,7 +1,7 @@
 <% if @list.valid? %>
     <% if @lists.size == 1 %>
         $("#lists-container").
-            replaceWith("<%=j render partial: 'lists',
+            replaceWith("<%=j render partial: 'lists_container',
                         locals: {lists: @lists}%>");
     <% else %>
         $("ul#lists").append("<%=j render partial: 'list', locals: {list: @list}%>");
