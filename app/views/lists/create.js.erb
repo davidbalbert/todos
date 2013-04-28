@@ -1,11 +1,10 @@
 <% if @list.valid? %>
     <% if @lists.size == 1 %>
         $("#lists-container").
-            replaceWith("<%=j render partial: 'lists_container',
-                        locals: {lists: @lists}%>");
+            replaceWith("<%=j render 'lists_container' %>");
     <% else %>
-        $("ul#lists").append("<%=j render partial: 'list', locals: {list: @list}%>");
+        $("ul#lists").append("<%=j render @list %>");
     <% end %>
 <% end %>
 
-$("form").replaceWith("<%=j render partial: 'form', locals: {list: @new_list}%>");
+$("form").replaceWith("<%=j render 'form' %>");

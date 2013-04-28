@@ -1,12 +1,12 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
-    @list = List.new
+    @new_list = List.new
   end
 
   def show
     @list = List.find(params[:id])
-    @todo = @list.todos.build
+    @new_todo = @list.todos.build
   end
 
   def create
@@ -25,6 +25,8 @@ class ListsController < ApplicationController
         end
       end
     else
+      @new_list = @list
+
       respond_to do |format|
         format.html do
           @lists = List.all
@@ -33,7 +35,6 @@ class ListsController < ApplicationController
         end
 
         format.js do
-          @new_list = @list
           @lists = List.all
         end
       end

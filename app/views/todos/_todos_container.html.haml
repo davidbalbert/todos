@@ -1,9 +1,6 @@
 #todos-container
-  - if list.todos.count == 0
+  - if @list.todos.count == 0
     %p This list doesn't have any todos. Why don't you add one below?
   - else
     %ul#todos
-      = render partial: 'todos/todo',
-        collection: list.todos.reject(&:new_record?),
-        locals: {list: list},
-        :as => :todo
+      = render @list.todos.reject(&:new_record?)

@@ -1,11 +1,7 @@
 $("#todo-<%= @todo.id %>").remove();
 
-$("#list-header").
-    replaceWith("<%=j render partial: 'lists/header',
-    locals: {list: @list}%>");
+$("#list-header").replaceWith("<%=j render 'lists/header' %>");
 
 <% if @list.todos.count == 0 %>
-    $("#todos-container").
-        replaceWith("<%=j render partial: 'todos_container',
-                    locals: {list: @list}%>");
+    $("#todos-container").replaceWith("<%=j render 'todos_container' %>");
 <% end %>

@@ -4,22 +4,26 @@ class TodosController < ApplicationController
     @todo = @list.todos.build(todo_params)
 
     if @todo.save
+      @new_todo = @list.todos.build
+
       respond_to do |format|
         format.html do
           flash[:success] = "Todo created!"
           redirect_to @list
         end
 
-        format.js { @new_todo = @list.todos.build }
+        format.js
       end
     else
+      @new_todo = @todo
+
       respond_to do |format|
         format.html do
           flash.now[:error] = "There was an error creating your todo :("
           render 'lists/show'
         end
 
-        format.js { @new_todo = @todo }
+        format.js
       end
     end
   end

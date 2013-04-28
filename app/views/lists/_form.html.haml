@@ -1,7 +1,7 @@
-= form_for list, remote: true do |f|
-  - if list.errors[:name].any?
+= form_for @new_list, remote: true do |f|
+  - if @new_list.errors[:name].any?
     %ul.error-list
-      - list.errors[:name].each do |error|
+      - @new_list.errors[:name].each do |error|
         %li Name #{error}.
   = f.label :name
   = f.text_field :name, autofocus: true

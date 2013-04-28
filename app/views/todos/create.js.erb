@@ -1,18 +1,12 @@
 <% if @todo.valid? %>
     <% if @list.todos.count == 1 %>
         $("#todos-container").
-        replaceWith("<%=j render partial: 'todos_container',
-                    locals: {list: @list}%>");
+        replaceWith("<%=j render 'todos_container' %>");
     <% else %>
-        $("#todos").append("<%=j render partial: 'todo',
-            locals: {todo: @todo, list: @list}%>");
+        $("#todos").append("<%=j render @todo %>");
     <% end %>
 
-    $("#list-header").
-        replaceWith("<%=j render partial: 'lists/header',
-        locals: {list: @list}%>");
-
+    $("#list-header").replaceWith("<%=j render 'lists/header' %>");
 <% end %>
 
-$("form#new_todo").replaceWith("<%=j render partial: 'form',
-    locals: {list: @list, todo: @new_todo}%>");
+$("form#new_todo").replaceWith("<%=j render 'form' %>");

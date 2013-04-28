@@ -1,5 +1,5 @@
 %li{id: "todo-#{todo.id}"}
-  = form_for [list, todo],
+  = form_for [@list, todo],
     remote: true,
     html: {class: 'completed-form'} do |f|
     = f.check_box :completed, title: "Completed"

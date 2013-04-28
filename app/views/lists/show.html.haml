@@ -2,10 +2,9 @@
 
 = link_to "View all lists", root_url
 
-= render partial: 'lists/header', locals: {list: @list}
+= render 'lists/header'
 
-= render partial: 'todos/todos_container', locals: {list: @list}
+= render 'todos/todos_container'
 
 %h2 Add a new todo
-= render partial: 'todos/form',
-         locals: {list: @list, todo: @todo}
+= render 'todos/form'
